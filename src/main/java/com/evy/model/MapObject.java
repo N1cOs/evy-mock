@@ -16,4 +16,6 @@ public class MapObject {
     private Position position;
 
     private String info;
+
+    private NotificationType type;
 }
