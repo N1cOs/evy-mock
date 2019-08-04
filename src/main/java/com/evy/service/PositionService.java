@@ -18,6 +18,12 @@ public class PositionService {
     @Value("${app.position.fault}")
     private Double fault;
 
+    @Value("${app.position.width}")
+    private Double width;
+
+    @Value("${app.position.height}")
+    private Double height;
+
     public Flux<Position> getPersonPosition(Integer id) {
         return Flux.interval(Duration.ofMillis(interval))
                 .map(tick -> new Position(getPoint(id), fault));
@@ -26,8 +32,8 @@ public class PositionService {
     private Point getPoint(Integer id) {
         var rand = new Random();
 
-        var x = rand.nextDouble() * 5.8 + id / 10;
-        var y = rand.nextDouble() * 1.8 + id / 10;
+        var x = rand.nextDouble() * width;
+        var y = rand.nextDouble() * height;
 
         return new Point(x, y);
     }
