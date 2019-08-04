@@ -2,6 +2,7 @@ package com.evy.service;
 
 import com.evy.model.Person;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class PersonService {
         people.put(2, new Person(2, "Dimon"));
     }
 
-    public Person getPerson(Integer id) {
-        return people.get(id);
+    public Mono<Person> getPerson(Integer id) {
+        return Mono.justOrEmpty(people.get(id));
     }
 }
